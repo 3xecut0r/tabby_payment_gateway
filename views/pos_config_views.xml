@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="point_of_sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='point_of_sale']" position="inside">
+                <h2>Tabby</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="o_setting_left_pane">
+                        <field name="is_tabby"/>
+                    </div>
+                    <div class="o_setting_right_pane">
+                        <label for="is_tabby"/>
+                        <div class="text-muted">
+                            Enable Tabby as a payment method in the POS.
+                        </div>
+                        <div class="content-group">
+                            <div class="row mt16">
+                                <div class="col-6">
+                                    <label for="api_token"/>
+                                </div>
+                                <div class="col-6">
+                                    <field name="api_token"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="api_secret"/>
+                                </div>
+                                <div class="col-6">
+                                    <field name="api_secret"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label for="merchant_code"/>
+                                </div>
+                                <div class="col-6">
+                                    <field name="merchant_code"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_tabby_payment" model="ir.actions.act_window">
+        <field name="name">Tabby Payments</field>
+        <field name="res_model">tabby.payment</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain" eval="False"/> <!-- Force empty -->
+        <field name="view_id" ref="view_tabby_payment_list"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create the first Tabby Payment
+            </p>
+        </field>
+    </record>
+
+<!--    <menuitem id="menu_tabby_payment" name="Tabby Payments" parent="point_of_sale.menu_point_config_product"-->
+<!--              sequence="100" action="action_tabby_payment" groups="point_of_sale.group_pos_manager"/>-->
+
+    <menuitem id="menu_tabby_payment"
+        name="Tabby Payments"
+        parent="point_of_sale.menu_point_root"
+        action="action_tabby_payment"
+        sequence="100"
+        groups="point_of_sale.group_pos_manager"/>
+</odoo>
