@@ -8,18 +8,6 @@
                     <label>Name:</label>
                     <input type="text" name="name" placeholder="John Doe"/>
                 </div>
-<!--                <div class="input-field">-->
-<!--                    <label>Phone:</label>-->
-<!--                    <input type="text" name="phone" placeholder="+1234567890"/>-->
-<!--                </div>-->
-<!--                <div class="input-field">-->
-<!--                    <label>Email:</label>-->
-<!--                    <input type="text" name="email" placeholder="john.doe@example.com"/>-->
-<!--                </div>-->
-<!--                <div class="input-field">-->
-<!--                    <label>Date of birth:</label>-->
-<!--                    <input type="text" name="dob" placeholder="2000-08-31"/>-->
-<!--                </div>-->
                 <div class="footer">
                     <button type="button" t-on-click="confirm">Confirm</button>
                     <button type="button" t-on-click="cancel">Close</button>

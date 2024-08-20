@@ -10,9 +10,6 @@ odoo.define('tabby_payment_gateway.TabbyPopup', function (require) {
         confirm() {
             const self = this;
             const name = this.el.querySelector('input[name="name"]').value;
-            // const phone = this.el.querySelector('input[name="phone"]').value;
-            // const email = this.el.querySelector('input[name="email"]').value;
-            // const dob = this.el.querySelector('input[name="dob"]').value;
             if (!name ) this.cancel();
             const orderlines = this.env.pos.get_order().orderlines.models;
             const items = orderlines.map(line => {
@@ -47,7 +44,6 @@ odoo.define('tabby_payment_gateway.TabbyPopup', function (require) {
                     body: this.env._t('The selected customer does not have a complete address. Please provide the address, city, and postal code before proceeding.'),
                 });
             } else {
-                console.log(this.env.pos.get_order());
                 const result = rpc.query({
                     route: '/pos/save_customer_data',
                     params: {
@@ -91,7 +87,6 @@ odoo.define('tabby_payment_gateway.TabbyPopup', function (require) {
                     }
                 }).catch(function(err) {
                     self.cancel()
-                    console.error("RPC Error:", err);
                     alert("An error occurred while processing the payment. Please try again.");
                     self.cancel()
                 });
@@ -99,7 +94,7 @@ odoo.define('tabby_payment_gateway.TabbyPopup', function (require) {
         }
 
         _super_confirm() {
-            super.confirm();  // Вызов super в отдельном методе
+            super.confirm();
         }
     }
 
