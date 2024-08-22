@@ -5,8 +5,8 @@
             <div class="popup">
                 <h1>Tabby Payment</h1>
                 <div class="input-field">
-                    <label>Name:</label>
-                    <input type="text" name="name" placeholder="John Doe"/>
+                    <label>Phone:</label>
+                    <input type="text" name="phone" placeholder="+971500000001"/>
                 </div>
                 <div class="footer">
                     <button type="button" t-on-click="confirm">Confirm</button>
@@ -16,3 +16,4 @@
         </div>
     </t>
 </templates>
+

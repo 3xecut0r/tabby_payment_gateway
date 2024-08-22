@@ -36,7 +36,10 @@ odoo.define('pos_tabby_integration.TabbyPaymentScreen', function(require) {
                     const { confirmed } = await this.showPopup('TabbyPopup', {
                         title: this.env._t('Tabby Payment Confirmation'),
                     });
-                    if (!confirmed) return;
+                    if (!confirmed) {
+                        alert('User did not confirm the payment. Returning to payment screen.')
+                        return;
+                    }
                 }
                 return super.validateOrder(isForceValidate);
             }

@@ -1,6 +1,6 @@
 {
     'name': 'Tabby Payment Gateway',
-    'version': '15.0.1.0.1',
+    'version': '15.0.2.0.0',
     'summary': 'Integrate Tabby Payment Gateway with Odoo POS',
     'description': """
     This module integrates Tabby Payment Gateway with Odoo POS, allowing customers to use Tabby as a payment method.
@@ -20,9 +20,11 @@
         'point_of_sale.assets': [
             'tabby_payment_gateway/static/src/js/payment_screen.js',
             'tabby_payment_gateway/static/src/js/tabby_popup.js',
+            'tabby_payment_gateway/static/src/js/qr_code_popup.js',
         ],
         'web.assets_qweb': [
             'tabby_payment_gateway/static/src/xml/tabby_popup.xml',
+            'tabby_payment_gateway/static/src/xml/tabby_qr_code_popup.xml',
         ],
     },
     'demo': [],
