@@ -1,7 +1,6 @@
 import logging
 
 import requests
-from soupsieve.util import lower
 
 from odoo import http, fields
 from odoo.addons.point_of_sale.controllers.main import PosController
@@ -19,9 +18,9 @@ class TabbyPosController(PosController):
             'Content-Type': 'application/json',
         }
         response = requests.get(f'https://api.tabby.ai/api/v2/payments/{kw["payment_id"]}', headers=headers).json()
-        if lower(response.get('status')) in ['authorized', 'closed']:
+        if response.get('status').lower() in ['authorized', 'closed']:
             return {'status': 'Success', 'data': response}
-        elif lower(response.get('status')) in ['rejected', 'expired']:
+        elif response.get('status').lower() in ['rejected', 'expired']:
             return {'status': 'Cancelled'}
         return {'status': 'In progress'}
 
@@ -60,9 +59,12 @@ class TabbyPosController(PosController):
                 'company_id': company_id.id,
             }
             request.env['tabby.payment'].sudo().create(payment_data)
+            sms_response = requests.post(f'https://api.tabby.ai/api/v2/checkout/{response.get("id")}/send_hpp_link').json()
+            sms = 'error' if sms_response.get('status') == 'error' else 'ok'
             return {'qr_code': response['configuration']['available_products']['installments'][0]['qr_code'],
                     'payment_id': response['payment'].get('id'),
-                    'company_id': company_id.id}
+                    'company_id': company_id.id,
+                    'sms': sms}
         elif response.get('status') == 'rejected':
             rejection_reasons = {
                 'not_available': 'Sorry, Tabby is unable to approve this purchase. Please use an alternative payment method for your order.',
