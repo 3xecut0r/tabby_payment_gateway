@@ -6,10 +6,10 @@
         <field name="arch" type="xml">
             <tree string="Tabby Payments">
                 <field name="name"/>
-                <field name="customer_name"/>
+                <field name="payment_id"/>
                 <field name="customer_phone"/>
-                <field name="customer_email"/>
                 <field name="amount"/>
+                <field name="reference_id"/>
                 <field name="payment_date"/>
                 <field name="company_id"/>
             </tree>

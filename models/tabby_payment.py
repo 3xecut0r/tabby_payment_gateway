@@ -8,9 +8,8 @@ class TebbyPayment(models.Model):
 
     name = fields.Char(string='ID of response')
     payment_id = fields.Char(string='Payment ID')
-    customer_name = fields.Char(string='Customer Name')
     customer_phone = fields.Char(string='Customer Phone')
-    customer_email = fields.Char(string='Customer Email')
+    reference_id = fields.Char(string='Reference ID')
     amount = fields.Float(string='Amount')
     payment_date = fields.Datetime(string='Payment Date', default=fields.Datetime.now)
     company_id = fields.Many2one('res.company', string='Company', default=lambda self: self.env.company)

@@ -52,7 +52,8 @@
         <field name="name">Tabby Payments</field>
         <field name="res_model">tabby.payment</field>
         <field name="view_mode">tree,kanban,form</field>
-        <field name="domain" eval="False"/> <!-- Force empty -->
+        <field name="domain">[]</field>
+        <field name="context">{'search_default_group_by_account': 1}</field>
         <field name="view_id" ref="view_tabby_payment_list"/>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
@@ -61,13 +62,10 @@
         </field>
     </record>
 
-<!--    <menuitem id="menu_tabby_payment" name="Tabby Payments" parent="point_of_sale.menu_point_config_product"-->
-<!--              sequence="100" action="action_tabby_payment" groups="point_of_sale.group_pos_manager"/>-->
-
-    <menuitem id="menu_tabby_payment"
-        name="Tabby Payments"
-        parent="point_of_sale.menu_point_root"
-        action="action_tabby_payment"
-        sequence="100"
-        groups="point_of_sale.group_pos_manager"/>
+    <menuitem id="menu_point_config_product"
+              name="Tabby Payments"
+              parent="point_of_sale.menu_point_config_product"
+              action="action_tabby_payment"
+              sequence="15"
+              groups="point_of_sale.group_pos_manager"/>
 </odoo>

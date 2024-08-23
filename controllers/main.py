@@ -51,8 +51,9 @@ class TabbyPosController(PosController):
 
         if response.get('status') == 'created':
             payment_data = {
-                'id': response.get('id'),
+                'name': response.get('id'),
                 'payment_id': response.get('payment', {}).get('id'),
+                'reference_id': kw['reference_id'],
                 'customer_phone': kw['x_phone'],
                 'amount': kw['amount'],
                 'payment_date': fields.Datetime.now(),
